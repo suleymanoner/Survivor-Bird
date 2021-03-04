@@ -3,6 +3,7 @@ package com.example.survivorbird;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -46,12 +47,17 @@ public class SurvivorBird extends ApplicationAdapter {
 	Circle[] enemyCircle;
 	Circle[] enemyCircle2;
 	Circle[] enemyCircle3;
+	private Music music;
 
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		background = new Texture("background.png");
+		music = Gdx.audio.newMusic(Gdx.files.internal("theme_music.mp3"));
+		music.setLooping(true);
+		music.setVolume(0.1f);
+		music.play();
 		bird = new Texture("bird.png");
 		enemy1 = new Texture("sprite1.png");
 		enemy2 = new Texture("sprite1.png");
@@ -265,5 +271,6 @@ public class SurvivorBird extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
+		music.dispose();
 	}
 }
